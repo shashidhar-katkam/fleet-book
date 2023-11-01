@@ -1,0 +1,23 @@
+service: fleet-book
+
+plugins:
+  - serverless-offline
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: prod
+  region: ap-south-1
+
+  environment:
+    STAGE: ${self:custom.stage}
+    MONGODB_CON_URL: mongodb+srv://testuser:mIDGjQbjl5pGNzaJ@serverlessinstance0.kod82.mongodb.net/test?retryWrites=true&w=majority
+functions:
+  app:
+    handler: app.handler
+    timeout: 500
+    events:
+      - http: ANY /
+      - http: "ANY {proxy+}"
