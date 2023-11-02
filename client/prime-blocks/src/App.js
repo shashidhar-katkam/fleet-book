@@ -92,6 +92,10 @@ import PrimeReact from "primereact/api";
 
 import "./App.scss";
 import CommandMenu from "./components/application/commandmenu/CommandMenu";
+import Fleet from "./fleet";
+import LoginPage from "./fleet/loginPage";
+import AdminPanel from "./fleet/adminPanel";
+import UserPanel from "./fleet/userPanel";
 
 const App = () => {
     const [visibleSidebar, setVisibleSidebar] = useState(false);
@@ -100,7 +104,7 @@ const App = () => {
     const [rippleEffect, setRippleEffect] = useState(true);
     const [dark, setDark] = useState(false);
     const [theme, setTheme] = useState("lara-light-indigo");
-    const [scale, setScale] = useState(16);
+    const [scale, setScale] = useState(13);
     const scales = [12, 13, 14, 15, 16];
     const copyTooltipRef = useRef();
 
@@ -323,13 +327,13 @@ const App = () => {
 
     return (
         <>
-            <Tooltip
+            {/* <Tooltip
                 ref={copyTooltipRef}
                 target=".block-action-copy:not(.p-disabled)"
                 position="bottom"
                 content="Copied to clipboard"
                 event="focus"
-            />
+            /> */}
 
             <div
                 className={classNames("layout-wrapper", {
@@ -338,7 +342,7 @@ const App = () => {
                     "layout-wrapper-dark": dark,
                 })}
             >
-                <div className="layout-topbar">
+                {/* <div className="layout-topbar">
                     <div style={{ cursor: "pointer" }} className="topbar-logo">
                         <a onClick={() => history.push("/")}>
                             <img
@@ -396,12 +400,28 @@ const App = () => {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
 
-                <div className="layout-breadcrumb">{breadcrumb}</div>
+                {/* <div className="layout-breadcrumb">{breadcrumb}</div> */}
 
                 <div className="layout-content">
-                    <Route path="/" exact render={() => <Home dark={dark} />} />
+                    <Route
+                        path="/home"
+                        exact
+                        render={() => <Home dark={dark} />}
+                    />
+                    <Route path="/" exact render={() => <Fleet />} />
+                    <Route
+                        path="/admin-panel"
+                        exact
+                        render={() => <AdminPanel />}
+                    />
+                    <Route
+                        path="/user-panel"
+                        exact
+                        render={() => <UserPanel />}
+                    />
+                    <Route path="/login" exact render={() => <LoginPage />} />
                     <Route path="/pricing" exact component={PricingPage} />
                     <Route
                         path="/documentation"
@@ -731,14 +751,14 @@ const App = () => {
                     />
                 </div>
 
-                <a
+                {/* <a
                     tabIndex="0"
                     className="layout-config-button"
                     onClick={() => setVisibleSidebar(true)}
                 >
                     <i className="pi pi-cog"></i>
-                </a>
-
+                </a> */}
+                {/* 
                 <Sidebar
                     position="right"
                     visible={visibleTopbarMenu}
@@ -1475,7 +1495,7 @@ const App = () => {
                             <span>Nano</span>
                         </div>
                     </div>
-                </Sidebar>
+                </Sidebar> */}
             </div>
         </>
     );

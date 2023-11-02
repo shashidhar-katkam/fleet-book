@@ -355,7 +355,7 @@ const Widgets = () => {
                             <img src="assets/demo/images/avatar/profile.jpg" className="user-card-avatar" alt="diamond-layout" />
                         </div>
                         <div className="user-card-body">
-                            <div className="user-card-title">AMELIA STONE</div>
+                            <div className="user-card-title">Sudarshan Reddy</div>
                             <div className="user-card-subtext">Sales Team</div>
 
                             <div className="grid user-card-stats">

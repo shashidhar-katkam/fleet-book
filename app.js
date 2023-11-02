@@ -13,7 +13,7 @@ const { setCustomCors } = require('./src/utils');
 require('dotenv').config();
 
 const MONGODB_CON_URL = process.env.MONGODB_CON_URL;
-
+console.log(MONGODB_CON_URL, 'MONGODB_CON_URL')
 app.use(compression());
 app.use(setCustomCors);
 app.use(cors());
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use('/api', baseRouter);
 app.get('/', async (req, res) => {
-    res.send('thanks');
+    res.send('ping done');
 });
 
 mongoose.Promise = global.Promise;

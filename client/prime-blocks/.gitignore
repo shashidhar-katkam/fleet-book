@@ -1,0 +1,72 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+node_modules
+
+# using yarn.lock instead
+package-lock.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+apps/.idea/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+.history
+
+# Serverless Framework
+.serverless
+
+# Webpack
+.webpack
+
+.dynamodb
+jspm_packages
+
+# misc
+.env.local
+.eslintcache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# CodeArtifact
+.npmrc
+.yarnrc
+pip.conf
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Sonar Scanner Temporary Directory
+/.scannerwork
+
+# Test Report Files
+test-report.xml
+junit.xml
+/jest-test-reports
+
+# AWS certs
+aws.pem

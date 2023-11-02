@@ -20,7 +20,7 @@
         "web-vitals": "^1.1.2"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "react-scripts --openssl-legacy-provider start",
         "build": "GENERATE_SOURCEMAP=false react-scripts build",
         "build-deploy": "GENERATE_SOURCEMAP=false react-scripts --openssl-legacy-provider build",
         "test": "react-scripts test",

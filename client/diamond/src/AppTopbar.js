@@ -110,7 +110,7 @@ const AppTopbar = (props) => {
                     <li className={profileItemClassName}>
                         <button type="button" className="p-link" onClick={props.onTopbarUserMenu}>
                             <img src="assets/demo/images/avatar/profile.jpg" alt="diamond-layout" className="profile-image" />
-                            <span className="profile-name">Amelia Stone</span>
+                            <span className="profile-name">Sudarshan</span>
                         </button>
                         <ul className="profile-menu fade-in-up">
                             <li>
