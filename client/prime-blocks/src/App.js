@@ -96,6 +96,8 @@ import Fleet from "./fleet";
 import LoginPage from "./fleet/loginPage";
 import AdminPanel from "./fleet/adminPanel";
 import UserPanel from "./fleet/userPanel";
+import TruckIngestion from "./fleet/adminPanel/truckIngestion";
+import TruckManagement from "./fleet/adminPanel/truckManagement";
 
 const App = () => {
     const [visibleSidebar, setVisibleSidebar] = useState(false);
@@ -409,6 +411,16 @@ const App = () => {
                         path="/home"
                         exact
                         render={() => <Home dark={dark} />}
+                    />
+                    <Route
+                        path="/truck-ingestion"
+                        exact
+                        render={() => <TruckIngestion />}
+                    />
+                    <Route
+                        path="/truck-management"
+                        exact
+                        render={() => <TruckManagement />}
                     />
                     <Route path="/" exact render={() => <Fleet />} />
                     <Route

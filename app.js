@@ -10,6 +10,7 @@ var path = require('path');
 const app = express();
 const baseRouter = require('./src/routes/_index');
 const { setCustomCors } = require('./src/utils');
+const truck = require('./src/models/truck');
 require('dotenv').config();
 
 const MONGODB_CON_URL = process.env.MONGODB_CON_URL;
@@ -24,6 +25,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use('/api', baseRouter);
 app.get('/', async (req, res) => {
+    let data = require('./trucks.json');
+    data.forEach(async (d) => {
+      await truck.create(d);
+    });
     res.send('ping done');
 });
 
