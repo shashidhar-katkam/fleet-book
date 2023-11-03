@@ -1,0 +1,27 @@
+.container { 
+   width: 60%;
+   padding-left: 5%;
+
+   .p-button {
+    width: 150px;
+    height: 50px;
+   }
+          
+    .p-calendar { 
+      width: 100px;
+      margin-top: 10px;
+      height: 50px;
+    }
+}
+
+.select-src-dst {
+  height: 60px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.p-dataview-content article{ 
+  height: 60px;
+}
+
+

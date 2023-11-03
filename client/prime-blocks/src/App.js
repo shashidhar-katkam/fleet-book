@@ -95,6 +95,7 @@ import CommandMenu from "./components/application/commandmenu/CommandMenu";
 import Fleet from "./fleet";
 import LoginPage from "./fleet/loginPage";
 import AdminPanel from "./fleet/adminPanel";
+// import UserPanel from "./fleet/userPanel";
 import UserPanel from "./fleet/userPanel";
 
 const App = () => {
@@ -751,14 +752,14 @@ const App = () => {
                     />
                 </div>
 
-                {/* <a
+                <a
                     tabIndex="0"
                     className="layout-config-button"
                     onClick={() => setVisibleSidebar(true)}
                 >
                     <i className="pi pi-cog"></i>
-                </a> */}
-                {/* 
+                </a>
+                 
                 <Sidebar
                     position="right"
                     visible={visibleTopbarMenu}
@@ -1495,7 +1496,7 @@ const App = () => {
                             <span>Nano</span>
                         </div>
                     </div>
-                </Sidebar> */}
+                </Sidebar> 
             </div>
         </>
     );

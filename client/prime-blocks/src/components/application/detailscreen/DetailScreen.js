@@ -62,26 +62,26 @@ const DetailScreen = () => {
             stars: 4,
             price: "$1,143",
         },
-        {
-            title: "Luxurious spacious suite Jordan",
-            image: "assets/images/blocks/hotels/h5.jpeg",
-            description: "Guest suite",
-            location: "Jordan",
-            guest: "2 Guests",
-            speed: "1 Gigabit",
-            stars: 5,
-            price: "$983",
-        },
-        {
-            title: "Home in Amsterdam",
-            image: "assets/images/blocks/hotels/h6.jpeg",
-            description: "Large comfortable room in Sarphatistraat",
-            location: "Sarphatistraat",
-            guest: "2 Guests",
-            speed: "200 Megabits",
-            stars: 4,
-            price: "$514",
-        },
+        // {
+        //     title: "Luxurious spacious suite Jordan",
+        //     image: "assets/images/blocks/hotels/h5.jpeg",
+        //     description: "Guest suite",
+        //     location: "Jordan",
+        //     guest: "2 Guests",
+        //     speed: "1 Gigabit",
+        //     stars: 5,
+        //     price: "$983",
+        // },
+        // {
+        //     title: "Home in Amsterdam",
+        //     image: "assets/images/blocks/hotels/h6.jpeg",
+        //     description: "Large comfortable room in Sarphatistraat",
+        //     location: "Sarphatistraat",
+        //     guest: "2 Guests",
+        //     speed: "200 Megabits",
+        //     stars: 4,
+        //     price: "$514",
+        // },
     ];
 
     const listItemTemplate = (product) => (
@@ -534,7 +534,7 @@ const DetailScreen = () => {
 
     return (
         <>
-            <BlockViewer header="Detail" code={block1}>
+            {/* <BlockViewer header="Detail" code={block1}>
                 <div className="surface-ground">
                     <div
                         className="surface-overlay py-3 px-6 border-bottom-1 surface-border flex align-items-center justify-content-between relative lg:static"
@@ -1012,11 +1012,11 @@ const DetailScreen = () => {
                         </div>
                     </div>
                 </div>
-            </BlockViewer>
+            </BlockViewer> */}
 
             <BlockViewer header="Listings" code={block2} new>
                 <section className="surface-ground">
-                    <nav
+                    {/* <nav
                         className="surface-overlay px-6 lg:px-3 xl:px-6 border-bottom-1 surface-border shadow-2 flex justify-content-between relative lg:static"
                         style={{ minHeight: "84px" }}
                     >
@@ -1125,9 +1125,9 @@ const DetailScreen = () => {
                                 </li>
                             </ul>
                         </div>
-                    </nav>
+                    </nav> */}
                     <section className="surface-section px-6 py-5">
-                        <header className="flex w-full justify-content-between align-items-center border-bottom-1 surface-border pb-5">
+                        {/* <header className="flex w-full justify-content-between align-items-center border-bottom-1 surface-border pb-5">
                             <div>
                                 <h2 className="mt-0 mb-3 font-medium text-2xl text-900">
                                     Listings
@@ -1141,8 +1141,8 @@ const DetailScreen = () => {
                                 className="p-button-outlined"
                                 label="Report Issue"
                             ></Button>
-                        </header>
-                        <section className="flex flex-wrap flex-column md:flex-row md:align-items-center gap-2 py-5">
+                        </header> */}
+                        {/* <section className="flex flex-wrap flex-column md:flex-row md:align-items-center gap-2 py-5">
                             <MultiSelect
                                 value={selectedCities}
                                 onChange={(e) => setSelectedCities(e.value)}
@@ -1170,19 +1170,23 @@ const DetailScreen = () => {
                                 placeholder="Select price range"
                                 className="w-full md:w-15rem"
                             />
-                        </section>
-                        <img
+                        </section> */}
+                        {/* <img
                             src="assets/images/blocks/maps/map-1.png"
                             alt="Map"
                             className="w-full border-1 surface-border border-round"
-                        />
-                        <div className="flex w-full justify-content-center sm:justify-content-end align-items-center my-5">
+                        /> */}
+                        {/* <div className="flex w-full justify-content-center sm:justify-content-end align-items-center my-5">
                             <SelectButton
                                 value={value}
                                 onChange={(e) => setValue(e.value)}
                                 options={options}
                             />
-                        </div>
+                        </div> */}
+
+                    </section>
+                </section>
+            </BlockViewer>
 
                         <DataView
                             value={products}
@@ -1193,9 +1197,6 @@ const DetailScreen = () => {
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                             itemTemplate={listItemTemplate}
                         />
-                    </section>
-                </section>
-            </BlockViewer>
         </>
     );
 };
