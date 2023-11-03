@@ -12,4 +12,9 @@ bookingRouter.post(
   bookingController.getFleetsForBooking
 );
 
+bookingRouter.post(
+  '/customer',
+  bookingController.getCustomerBookings
+);
+
 module.exports = bookingRouter;

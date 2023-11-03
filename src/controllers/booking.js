@@ -148,10 +148,10 @@ exports.getFleetsForBooking = catchAsync(async (req, res, next) => {
 
     let filter = {
       allowExternalBooking: true,
-      $or: [
-        { fromLocation: [body.fromLocation, null] },
-        { toLocation: [body.toLocation, null] },
-      ],
+      // $or: [
+      //   { fromLocation: [body.fromLocation, null] },
+      //   { toLocation: [body.toLocation, null] },
+      // ],
       // fromDate: {
       //   $gte: fromDate,
       //   $lte: toDate,
@@ -180,21 +180,103 @@ exports.getFleetsForBooking = catchAsync(async (req, res, next) => {
       .sort()
       .limitFields()
       .paginate()
-
       .lean();
 
     let trucks = await features.query;
 
-    console.log(JSON.stringify(trucks));
+    console.log(trucks.length, 'length');
 
     let truckss = [];
     trucks.map(async (truck) => {
       let truckDetails = await Truck.findById(truck.truckId).lean();
+
+      console.log(truckDetails, 'truckDetails');
       truckss.push({
         ...truck,
         ...truckDetails,
       });
     });
+
+    // console.log(JSON.stringify(truckss), 'trucks');
+
+    let totalBookings = await Booking.countDocuments(filter);
+    return res.status(200).json({
+      status: true,
+      message: 'Bookings successfully fetched.',
+      totalRecords: totalBookings,
+      data: truckss,
+    });
+  } catch (e) {
+    console.log(e.message);
+    return res.status(500).json({
+      status: false,
+      message: e.message,
+    });
+  }
+});
+
+exports.getCustomerBookings = catchAsync(async (req, res, next) => {
+  try {
+    const { body } = req;
+
+    let filter = {
+      customer: true,
+      booked: true,
+      // $or: [
+      //   { fromLocation: [body.fromLocation, null] },
+      //   { toLocation: [body.toLocation, null] },
+      // ],
+      // fromDate: {
+      //   $gte: fromDate,
+      //   $lte: toDate,
+      // },
+      // toDate: {
+      //   $gte: fromDate,
+      //   $lte: toDate,
+      // },
+    };
+
+    let queryParams = req.query;
+    if (queryParams.search && queryParams.search != '') {
+      filter = {
+        ...filter,
+        name: {
+          $regex: queryParams.search || '',
+          $options: 'i',
+        },
+      };
+    }
+
+    console.log(filter, 'filter');
+
+    const features = new APIFeatures(Booking.find(filter), queryParams)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate()
+      .lean();
+
+    let trucks = await features.query;
+
+    console.log(trucks.length, 'length');
+
+    let truckss = [];
+
+    for (let index = 0; index < array.length; index++) {
+      const element = array[index];
+      
+    }
+    trucks.map(async (truck) => {
+      let truckDetails = await Truck.findById(truck.truckId).lean();
+
+      console.log(truckDetails, 'truckDetails');
+      truckss.push({
+        ...truck,
+        ...truckDetails,
+      });
+    });
+
+     console.log(JSON.stringify(truckss), 'trucks-customer');
 
     let totalBookings = await Booking.countDocuments(filter);
     return res.status(200).json({

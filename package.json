@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:nodemon": "nodemon index.js",
     "nodemon": "node index.js",
-    "start": "serverless offline --noTimeout --port 7000"
+    "start": "serverless offline --noTimeout --port 7777"
   },
   "author": "",
   "license": "ISC",

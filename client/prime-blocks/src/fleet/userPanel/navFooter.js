@@ -125,9 +125,7 @@ const NavFooter = (props) => {
                             </a>
                         </li>
                     </ul>
-                    <div className="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
-                      
-                      </div>
+                    <div className="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0"></div>
                 </div>
             </div>
             <div style={{ minHeight: "calc(100vh - 110px)" }}>

@@ -99,6 +99,7 @@ import AdminPanel from "./fleet/adminPanel";
 import UserPanel from "./fleet/userPanel";
 import TruckIngestion from "./fleet/adminPanel/truckIngestion";
 import TruckManagement from "./fleet/adminPanel/truckManagement";
+import Bookings from './fleet/userPanel/bookings';
 
 const App = () => {
     const [visibleSidebar, setVisibleSidebar] = useState(false);
@@ -428,6 +429,11 @@ const App = () => {
                         path="/admin-panel"
                         exact
                         render={() => <AdminPanel />}
+                    />
+                    <Route
+                        path="/customer-bookings"
+                        exact
+                        render={() => <Bookings/>}
                     />
                     <Route
                         path="/user-panel"
@@ -771,7 +777,7 @@ const App = () => {
                 >
                     <i className="pi pi-cog"></i>
                 </a>
-                 
+
                 <Sidebar
                     position="right"
                     visible={visibleTopbarMenu}
@@ -1508,7 +1514,7 @@ const App = () => {
                             <span>Nano</span>
                         </div>
                     </div>
-                </Sidebar> 
+                </Sidebar>
             </div>
         </>
     );
