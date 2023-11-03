@@ -421,7 +421,9 @@ const UserPanel1 = () => {
                             itemTemplate={listItemTemplate}
                         /> */}
                 {/* <DetailScreen /> */}
-                {showBooking && <BookFleet selectedTruck={selectedTruck} />}
+                {showBooking && <BookFleet selectedTruck={selectedTruck} onCancel={()=>{
+                    setShowBooking(false)
+                }} />}
             </div>
         </>
     );

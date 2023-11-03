@@ -8,7 +8,6 @@ import { StyleClass } from "primereact/styleclass";
 import { Ripple } from "primereact/ripple";
 
 const NavFooter2 = (props) => {
-   
     const btnRef33 = useRef(null);
     const btnRef34 = useRef(null);
     const btnRef35 = useRef(null);
@@ -94,6 +93,11 @@ const NavFooter2 = (props) => {
                                                 className="p-ripple flex align-items-center cursor-pointer p-3 text-gray-300 hover:bg-bluegray-700 transition-duration-150 transition-colors"
                                                 style={{
                                                     borderRadius: "30px",
+                                                }}
+                                                onClick={() => {
+                                                    props.history.push(
+                                                        "/user-panel"
+                                                    );
                                                 }}
                                             >
                                                 <i className="pi pi-home mr-2"></i>

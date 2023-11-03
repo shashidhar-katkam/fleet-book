@@ -262,21 +262,18 @@ exports.getCustomerBookings = catchAsync(async (req, res, next) => {
 
     let truckss = [];
 
-    for (let index = 0; index < array.length; index++) {
-      const element = array[index];
-      
-    }
-    trucks.map(async (truck) => {
-      let truckDetails = await Truck.findById(truck.truckId).lean();
+    for (let index = 0; index < trucks.length; index++) {
+      const element = trucks[index];
 
-      console.log(truckDetails, 'truckDetails');
+      let truckDetails = await Truck.findById(element.truckId).lean();
+
       truckss.push({
-        ...truck,
+        ...element,
         ...truckDetails,
       });
-    });
+    }
 
-     console.log(JSON.stringify(truckss), 'trucks-customer');
+    console.log(JSON.stringify(truckss), 'trucks-customer');
 
     let totalBookings = await Booking.countDocuments(filter);
     return res.status(200).json({
