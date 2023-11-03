@@ -1,4 +1,4 @@
-service: fleet-book
+service: fleet-book-sp
 
 plugins:
   - serverless-offline
@@ -21,3 +21,7 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+
+package:
+    exclude:
+      - ./client

@@ -22,7 +22,7 @@ const NavFooter = (props) => {
                 <div className="align-items-center flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none">
                     <section></section>
                     <ul className="list-none p-0 m-0 flex lg:align-items-center text-900 select-none flex-column lg:flex-row cursor-pointer">
-                        <li className="relative">
+                        {/* <li className="relative">
                             <StyleClass
                                 nodeRef={btnRef1}
                                 selector="@next"
@@ -63,7 +63,7 @@ const NavFooter = (props) => {
                                         <Ripple />
                                     </a>
                                 </li>
-                                {/* <li className="relative">
+                                <li className="relative">
                                     <StyleClass
                                         nodeRef={btnRef2}
                                         selector="@next"
@@ -103,12 +103,28 @@ const NavFooter = (props) => {
                                             </a>
                                         </li>
                                     </ul>
-                                </li> */}
+                                </li>
                             </ul>
+                        </li> */}
+                        <li>
+                            <a
+                                onClick={() => {
+                                    props.history.push("/truck-ingestion");
+                                }}
+                                className="p-ripple flex px-0 lg:px-5 py-3 hover:text-blue-600 font-medium transition-colors transition-duration-150"
+                            >
+                                <span>Truck Ingestion</span>
+                                <Ripple />
+                            </a>
                         </li>
                         <li>
-                            <a className="p-ripple flex px-0 lg:px-5 py-3 hover:text-blue-600 font-medium transition-colors transition-duration-150">
-                                <span>New Bookings</span>
+                            <a
+                                onClick={() => {
+                                    props.history.push("/truck-management");
+                                }}
+                                className="p-ripple flex px-0 lg:px-5 py-3 hover:text-blue-600 font-medium transition-colors transition-duration-150"
+                            >
+                                <span>Truck Management</span>
                                 <Ripple />
                             </a>
                         </li>
@@ -125,9 +141,7 @@ const NavFooter = (props) => {
                             </a>
                         </li> */}
                     </ul>
-                    <div className="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
-                      
-                    </div>
+                    <div className="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0"></div>
                 </div>
             </div>
             <div style={{ minHeight: "calc(100vh - 110px)" }}>
