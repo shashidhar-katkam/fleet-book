@@ -24,99 +24,20 @@ const LoginPage = (props) => {
                 <div className="flex flex-wrap">
                     <div
                         className="w-full lg:w-6 p-4 lg:p-7"
-                        style={{ backgroundColor: "rgba(255,255,255,.7)" }}
+                        style={{ backgroundColor: "rgba(255,255,255,.7)"}}
                     >
-                        <img
-                            src="assets/images/blocks/logos/bastion-purple.svg"
-                            alt="Image"
-                            height="50"
-                            className="mb-6"
-                        />
-                        <div className="text-xl text-black-alpha-90 font-500 mb-3">
-                            Welcome to Bastion
-                        </div>
-                        <p className="text-black-alpha-50 line-height-3 mt-0 mb-6">
-                            Quis vel eros donec ac odio tempor orci dapibus. In
-                            hac habitasse platea dictumst quisque.
-                        </p>
-                        <ul className="list-none p-0 m-0">
-                            <li className="flex align-items-start mb-4">
-                                <div>
-                                    <span
-                                        className="flex align-items-center justify-content-center bg-purple-400"
-                                        style={{
-                                            width: "38px",
-                                            height: "38px",
-                                            borderRadius: "10px",
-                                        }}
-                                    >
-                                        <i className="text-xl text-white pi pi-inbox"></i>
-                                    </span>
-                                </div>
-                                <div className="ml-3">
-                                    <span className="font-medium text-black-alpha-90">
-                                        Unlimited Inbox
-                                    </span>
-                                    <p className="mt-2 mb-0 text-black-alpha-50 line-height-3">
-                                        Tincidunt nunc pulvinar sapien et. Vitae
-                                        purus faucibus ornare suspendisse sed
-                                        nisi lacus sed viverra.{" "}
-                                    </p>
-                                </div>
-                            </li>
-                            <li className="flex align-items-start mb-4">
-                                <div>
-                                    <span
-                                        className="flex align-items-center justify-content-center bg-purple-400"
-                                        style={{
-                                            width: "38px",
-                                            height: "38px",
-                                            borderRadius: "10px",
-                                        }}
-                                    >
-                                        <i className="text-xl text-white pi pi-shield"></i>
-                                    </span>
-                                </div>
-                                <div className="ml-3">
-                                    <span className="font-medium text-black-alpha-90">
-                                        Premium Security
-                                    </span>
-                                    <p className="mt-2 mb-0 text-black-alpha-50 line-height-3">
-                                        Scelerisque purus semper eget duis at
-                                        tellus at urna. Sed risus pretium quam
-                                        vulputate.
-                                    </p>
-                                </div>
-                            </li>
-                            <li className="flex align-items-start">
-                                <div>
-                                    <span
-                                        className="flex align-items-center justify-content-center bg-purple-400"
-                                        style={{
-                                            width: "38px",
-                                            height: "38px",
-                                            borderRadius: "10px",
-                                        }}
-                                    >
-                                        <i className="text-xl text-white pi pi-globe"></i>
-                                    </span>
-                                </div>
-                                <div className="ml-3">
-                                    <span className="font-medium text-black-alpha-90">
-                                        Cloud Backups Inbox
-                                    </span>
-                                    <p className="mt-2 mb-0 text-black-alpha-50 line-height-3">
-                                        Egestas sed tempus urna et. Auctor elit
-                                        sed vulputate mi sit amet mauris
-                                        commodo.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
+
+                                <img
+                                    src="assets/images/blocks/logos/lynx-logo.svg"
+                                    alt="Image"
+                                    height="100"
+                                    style={{marginTop: '180px', marginLeft: '100px'}}
+                                />
+
                     </div>
                     <div className="w-full lg:w-6 p-4 lg:p-7 surface-card">
                         <div className="text-900 text-2xl font-medium mb-6">
-                            Login as
+                            Login {' '}
                             <RadioButton
                                 className="ml-2"
                                 name="menuMode"
@@ -127,7 +48,7 @@ const LoginPage = (props) => {
                                     setChecked4(e.value);
                                 }}
                             ></RadioButton>
-                            <label htmlFor="mode1">User</label>
+                            <label htmlFor="mode1">{' '}User</label>
                             <RadioButton
                                 className="ml-2"
                                 name="menuMode"
@@ -138,7 +59,7 @@ const LoginPage = (props) => {
                                     setChecked4(e.value);
                                 }}
                             ></RadioButton>
-                            <label htmlFor="mode2">Admin</label>
+                            <label htmlFor="mode2">{' '}Admin</label>
                         </div>
                         <label
                             htmlFor="email3"
@@ -194,27 +115,6 @@ const LoginPage = (props) => {
                             }}
                         />
 
-                        <Divider align="center" className="my-6">
-                            <span className="text-600 font-normal text-sm">
-                                OR
-                            </span>
-                        </Divider>
-
-                        <Button
-                            label="Sign In with GitHub"
-                            icon="pi pi-github"
-                            className="w-full p-button-secondary"
-                        />
-
-                        <div className="mt-6 text-center text-600">
-                            Don't have an account?{" "}
-                            <a
-                                tabIndex="0"
-                                className="font-medium text-blue-500"
-                            >
-                                Sign up
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

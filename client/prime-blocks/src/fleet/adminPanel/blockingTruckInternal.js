@@ -362,7 +362,6 @@ export default class BlockingTruckInternal extends Component {
                                 <Dropdown
                                     value={booking.toLocation}
                                     onChange={(e) => {
-                                        debugger;
                                         if (!booking.fromLocation) {
                                             return this.toast.current.show({
                                                 severity: "error",

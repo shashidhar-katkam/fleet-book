@@ -13,7 +13,6 @@ import truckimage from './truck-image.png';
 import { StyleClass } from "primereact/styleclass";
 import { Ripple } from "primereact/ripple";
 import { Badge } from "primereact/badge";
-
 import DetailScreen from "../../components/application/detailscreen/DetailScreen";
 
 import { DataViewLayoutOptions } from 'primereact/dataview';
@@ -712,6 +711,28 @@ const UserPanel1 = () => {
         {/* <DetailScreen /> */}
         </div>
       </>)
+}
+
+
+const bookingModal = () => {
+  
+return (
+  <div>
+   <span className="p-input-icon-left">
+    <i className="pi-map-marker" />
+    <InputText placeholder="" />
+   </span>   
+   <span className="p-input-icon-left">
+    <i className="pi-map-marker" />
+    <InputText placeholder="Search" />
+   </span>   
+   <span className="p-input-icon-left">
+    <i className="pi-map-marker" />
+    <InputText placeholder="Search" />
+   </span>   
+  </div>
+)
+
 }
 
 

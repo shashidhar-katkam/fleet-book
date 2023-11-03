@@ -20,7 +20,6 @@ export default class TruckIngestion extends Component {
         const { selectedTruck } = this.state;
 
         try {
-            debugger;
             const url = `${END_POINT}/truck/update`;
             const response = await axios.post(url, {
                 _id: selectedTruck._id,
