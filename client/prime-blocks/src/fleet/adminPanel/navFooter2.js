@@ -37,6 +37,9 @@ const NavFooter2 = (props) => {
                             style={{ height: "60px" }}
                         >
                             <svg
+                                onClick={() => {
+                                    props.history.push("/");
+                                }}
                                 width="222"
                                 height="30"
                                 viewBox="0 0 222 64"

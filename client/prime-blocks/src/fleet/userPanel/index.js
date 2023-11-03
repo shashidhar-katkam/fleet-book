@@ -8,16 +8,9 @@ import "../../styles.css";
 import "primeflex/primeflex.css";
 import { DataView } from "primereact/dataview";
 import { withRouter } from "react-router-dom";
-import { Rating } from "primereact/rating";
-import { Tag } from "primereact/tag";
+
 import { Avatar } from "primereact/avatar";
 import truckimage from "./truck-image.png";
-import { StyleClass } from "primereact/styleclass";
-import { Ripple } from "primereact/ripple";
-import { Badge } from "primereact/badge";
-import DetailScreen from "../../components/application/detailscreen/DetailScreen";
-
-import { DataViewLayoutOptions } from "primereact/dataview";
 
 import { Dropdown } from "primereact/dropdown";
 
