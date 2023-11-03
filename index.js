@@ -9,6 +9,7 @@ const baseRouter = require('./src/routes/_index');
 require('dotenv').config();
 // app.use(compression())
 const truck = require('./src/models/truck');
+const booking = require('./src/models/booking');
 
 var port = process.env.PORT || 7777;
 var MONGODB_CON_URL = process.env.MONGODB_CON_URL;
@@ -47,20 +48,41 @@ app.use('/api', baseRouter);
 app.get('/', async (req, res) => {
   let data = require('./trucks.json');
 
-  for (let i = 1; i < 100; i++) {
-    let va = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
-    let load = Math.floor(Math.random() * (100 - 40 + 1)) + 1;
-    data.forEach(async (_d) => {
-      let d = { ..._d };
-      d.name += ` ${i}`;
-      d.licensePlateNumber += ` ${i}`;
-      d.age += va;
-      d.load += load;
-      (d.inventoryStatus += d.fuelType =
-        Math.floor(Math.random() * 2) ? 'Diesel' : 'Electric'),
-        await truck.create(d);
+  // for (let i = 1; i < 100; i++) {
+  //   let va = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+  //   let load = Math.floor(Math.random() * (100 - 40 + 1)) + 1;
+  //   data.forEach(async (_d) => {
+  //     let d = { ..._d };
+  //     d.name += ` ${i}`;
+  //     d.licensePlateNumber += ` ${i}`;
+  //     d.age += va;
+  //     d.load += load;
+  //     (d.inventoryStatus += d.fuelType =
+  //       Math.floor(Math.random() * 2) ? 'Diesel' : 'Electric'),
+  //       await truck.create(d);
+  //   });
+  // }
+  // await truck.updateMany({
+  //   fuelType:
+  // })
+
+  let total = await truck.find({});
+
+  for (let index = 0; index < total.length; index++) {
+    const a = total[index];
+
+    await truck.findByIdAndUpdate(a.id, {
+      campartments: Math.floor(Math.random() * (3 - 1 + 1)) + 1,
+      age: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
     });
   }
+
+  // await booking.updateMany(
+  //   { fuelType: 'Petrol' },
+  //   {
+  //     fuelType: 'Electric',
+  //   }
+  // );
 
   res.send('ping done');
 });

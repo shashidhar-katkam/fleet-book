@@ -70,7 +70,7 @@ export default class BlockingTruckInternal extends Component {
         return (
             <Dialog
                 draggable={false}
-                header="Block fleet"
+                header="Book Fleet"
                 visible={true}
                 onHide={this.props.onCancel}
                 style={{ width: "90vw", height: "90vh" }}

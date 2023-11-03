@@ -8,7 +8,7 @@ import { withRouter } from "react-router-dom";
 
 const LoginPage = (props) => {
     const [checked3, setChecked3] = useState(false);
-    const [checked4, setChecked4] = useState('user');
+    const [checked4, setChecked4] = useState("user");
     // const navigate = useNavigate();
 
     return (
@@ -24,20 +24,63 @@ const LoginPage = (props) => {
                 <div className="flex flex-wrap">
                     <div
                         className="w-full lg:w-6 p-4 lg:p-7"
-                        style={{ backgroundColor: "rgba(255,255,255,.7)"}}
+                        style={{ backgroundColor: "rgba(255,255,255,.7)" }}
                     >
-
-                                <img
-                                    src="assets/images/blocks/logos/lynx-logo.svg"
-                                    alt="Image"
-                                    height="100"
-                                    style={{marginTop: '180px', marginLeft: '100px'}}
+                        <svg
+                            width="222"
+                            height="30"
+                            viewBox="0 0 222 64"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <g clipPath="url(#clip0)">
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M199.504 0H218.666L200.611 26.5598L191.061 12.421L199.504 0ZM163.682 0.000226394H158.666L179.085 30.0385L155.999 63.9998H161L183.904 30.0957L163.682 0.000226394ZM191.085 47.6917L202.171 64H221.333L200.647 33.5701L191.085 47.6917Z"
+                                    fill="white"
                                 />
-
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M100 0H116L140 36V0H156V60V64H140L116 28V64H100V4V0Z"
+                                    fill="white"
+                                />
+                                <path
+                                    d="M15.9999 50.5726V0H0V63.9998H36.1081L45.3332 50.5726H15.9999Z"
+                                    fill="white"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M99.9996 0H80.0225L67.4931 17.6797L76.4038 33.295L99.9996 0ZM73.5938 37.2601H58.6665L56.414 33.3129L34.6665 63.9998H54.6437L73.5938 37.2601Z"
+                                    fill="white"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M52.304 0H32.3005L53.5663 37.191H53.7045L34.6665 64H54.6472L73.6333 37.2641H73.5235L73.482 37.191H73.5698L52.304 0Z"
+                                    fill="white"
+                                />
+                                <path
+                                    d="M177.821 0H158.694L179.064 30.0957L155.993 64H175.173L198.298 30.0957L177.821 0Z"
+                                    fill="white"
+                                />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect
+                                        width="221.333"
+                                        height="64"
+                                        fill="white"
+                                    />
+                                </clipPath>
+                            </defs>
+                        </svg>
                     </div>
                     <div className="w-full lg:w-6 p-4 lg:p-7 surface-card">
                         <div className="text-900 text-2xl font-medium mb-6">
-                            Login {' '}
+                            Login{" "}
                             <RadioButton
                                 className="ml-2"
                                 name="menuMode"
@@ -48,7 +91,7 @@ const LoginPage = (props) => {
                                     setChecked4(e.value);
                                 }}
                             ></RadioButton>
-                            <label htmlFor="mode1">{' '}User</label>
+                            <label htmlFor="mode1"> User</label>
                             <RadioButton
                                 className="ml-2"
                                 name="menuMode"
@@ -59,7 +102,7 @@ const LoginPage = (props) => {
                                     setChecked4(e.value);
                                 }}
                             ></RadioButton>
-                            <label htmlFor="mode2">{' '}Admin</label>
+                            <label htmlFor="mode2"> Admin</label>
                         </div>
                         <label
                             htmlFor="email3"
@@ -114,7 +157,6 @@ const LoginPage = (props) => {
                                 }
                             }}
                         />
-
                     </div>
                 </div>
             </div>

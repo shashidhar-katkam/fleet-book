@@ -119,13 +119,13 @@ const NavFooter2 = (props) => {
                                                 }}
                                                 onClick={() => {
                                                     props.history.push(
-                                                        "/user-panel"
+                                                        "/truck-ingestion"
                                                     );
                                                 }}
                                             >
-                                                <i className="pi pi-home mr-2"></i>
+                                                <i className="pi pi-bookmark mr-2"></i>
                                                 <span className="font-medium">
-                                                    New booking
+                                                    Truck Ingestion
                                                 </span>
                                                 <Ripple />
                                             </a>
@@ -138,13 +138,13 @@ const NavFooter2 = (props) => {
                                                 }}
                                                 onClick={() => {
                                                     props.history.push(
-                                                        "/customer-bookings"
+                                                        "/truck-management"
                                                     );
                                                 }}
                                             >
-                                                <i className="pi pi-bookmark mr-2"></i>
+                                                <i className="pi pi-home mr-2"></i>
                                                 <span className="font-medium">
-                                                    Bookings
+                                                    Truck Management
                                                 </span>
                                                 <Ripple />
                                             </a>
@@ -189,7 +189,7 @@ const NavFooter2 = (props) => {
                                         }}
                                     />
                                     <span className="font-medium">
-                                        Amy Elsner
+                                        Truck Owner
                                     </span>
                                     <i className="pi pi-chevron-up ml-auto"></i>
                                     <Ripple />

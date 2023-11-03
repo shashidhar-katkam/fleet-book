@@ -130,7 +130,7 @@ const UserPanel1 = () => {
         //call API here
 
         try {
-            const url = `${END_POINT}/bookings/get-fleet-for-booking`;
+            const url = `${END_POINT}bookings/get-fleet-for-booking`;
             const response = await axios.post(url, {});
             if (response?.data?.data) {
                 setData(response?.data?.data);
@@ -260,7 +260,7 @@ const UserPanel1 = () => {
                                     }}
                                 />
                                 <Avatar
-                                    label={`${product.load || 20} load`}
+                                    label={`${product.load || 20} tons`}
                                     style={{
                                         backgroundColor: "orange",
                                         width: "50px",
@@ -268,7 +268,7 @@ const UserPanel1 = () => {
                                     }}
                                 />
                                 <Avatar
-                                    label={product.age + " old"}
+                                    label={product.age + "yrs old"}
                                     style={{ width: "50px", color: "#000000" }}
                                 />
                             </div>
@@ -297,13 +297,13 @@ const UserPanel1 = () => {
     const selectedCountryTemplate = (option, props) => {
         if (option) {
             return (
-                <div className="flex align-items-center">
-                    <img
+                <div className="flex align-items-center" style={{fontSize:'large'}}>
+                    {/* <img
                         alt={option.name}
                         src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png"
                         className={`mr-2 flag flag-${option.code.toLowerCase()}`}
                         style={{ width: "18px" }}
-                    />
+                    /> */}
                     <div>{option.name}</div>
                 </div>
             );
@@ -323,95 +323,99 @@ const UserPanel1 = () => {
 
     return (
         <>
-            <div>
-                <div className="flex container">
-                    <div className="select-src-dst">
-                        <div
-                            className="card flex justify-content-center"
-                            style={{ margin: "10px" }}
-                        >
-                            <Dropdown
-                                value={source}
-                                onChange={(e) => setSource(e.value)}
-                                options={countries}
-                                optionLabel="name"
-                                placeholder="Source City"
-                                filter
-                                valueTemplate={selectedCountryTemplate}
-                                itemTemplate={countryOptionTemplate}
-                                className="w-full md:w-20rem md:h-4rem"
-                            />
+            <div className="p-card p-5">
+                <h2>New Booking</h2>
+                <div>
+                    <div className="flex container">
+                        <div className="select-src-dst">
+                            <div
+                                className="card flex justify-content-center"
+                                style={{ margin: "10px" }}
+                            >
+                                <Dropdown
+                                    value={source}
+                                    onChange={(e) => setSource(e.value)}
+                                    options={countries}
+                                    optionLabel="name"
+                                    placeholder="Source City"
+                                    filter
+                                    valueTemplate={selectedCountryTemplate}
+                                    itemTemplate={countryOptionTemplate}
+                                    className="w-full md:w-20rem md:h-4rem"
+                                />
+                            </div>
+                            <div
+                                className="card flex justify-content-center"
+                                style={{ margin: "10px" }}
+                            >
+                                <Dropdown
+                                    value={destination}
+                                    onChange={(e) => setDestination(e.value)}
+                                    options={countries}
+                                    optionLabel="name"
+                                    placeholder="Destination City"
+                                    filter
+                                    valueTemplate={selectedCountryTemplate}
+                                    itemTemplate={countryOptionTemplate}
+                                    className="w-full md:w-20rem md:h-4rem"
+                                />
+                            </div>
+                            <div
+                                className="card flex justify-content-center"
+                                style={{ margin: "10px" }}
+                            >
+                                <Dropdown
+                                    value={loadType}
+                                    onChange={(e) => setLoadType(e.value)}
+                                    options={[
+                                        { name: "full load", code: "" },
+                                        { name: "partial load", code: "" },
+                                    ]}
+                                    optionLabel="name"
+                                    placeholder="Load type"
+                                    filter
+                                    valueTemplate={selectedCountryTemplate}
+                                    itemTemplate={countryOptionTemplate}
+                                    className="w-full md:w-18rem md:h-4rem"
+                                />
+                            </div>
+                            <div className="card flex justify-content-center">
+                                <Calendar
+                                    value={date}
+                                    onChange={(e) => setDate(e.value)}
+                                />
+                            </div>
+                            <div
+                                className="card flex flex-wrap justify-content-center gap-3"
+                                style={{ margin: "10px" }}
+                            >
+                                <Button
+                                    label="Submit"
+                                    icon="pi pi-check"
+                                    loading={loading}
+                                    onClick={onSubmit}
+                                />
+                            </div>
                         </div>
-                        <div
-                            className="card flex justify-content-center"
-                            style={{ margin: "10px" }}
-                        >
-                            <Dropdown
-                                value={destination}
-                                onChange={(e) => setDestination(e.value)}
-                                options={countries}
-                                optionLabel="name"
-                                placeholder="Destination City"
-                                filter
-                                valueTemplate={selectedCountryTemplate}
-                                itemTemplate={countryOptionTemplate}
-                                className="w-full md:w-20rem md:h-4rem"
-                            />
-                        </div>
-                        <div
-                            className="card flex justify-content-center"
-                            style={{ margin: "10px" }}
-                        >
-                            <Dropdown
-                                value={loadType}
-                                onChange={(e) => setLoadType(e.value)}
-                                options={[
-                                    { name: "full load", code: "" },
-                                    { name: "partial load", code: "" },
-                                ]}
-                                optionLabel="name"
-                                placeholder="Load type"
-                                filter
-                                valueTemplate={selectedCountryTemplate}
-                                itemTemplate={countryOptionTemplate}
-                                className="w-full md:w-18rem md:h-4rem"
-                            />
-                        </div>
-                        <div className="card flex justify-content-center">
-                            <Calendar
-                                value={date}
-                                onChange={(e) => setDate(e.value)}
-                            />
-                        </div>
-                        <div
-                            className="card flex flex-wrap justify-content-center gap-3"
-                            style={{ margin: "10px" }}
-                        >
-                            <Button
-                                label="Submit"
-                                icon="pi pi-check"
-                                loading={loading}
-                                onClick={onSubmit}
-                            />
-                        </div>
+                        <br />
+                        <br />
                     </div>
                     <br />
                     <br />
-                </div>
-                <br />
-                <br />
-                <br />
-                <div style={{ width: "60%", marginLeft: "10%" }}>
-                    {data && (
-                        <div className="card">
-                            <DataView
-                                value={data}
-                                itemTemplate={itemTemplate}
-                            />
-                        </div>
-                    )}
-                </div>
-                {/* <DataView
+                    <br />
+                    <div 
+                    // style={{ width: "60%", marginLeft: "10%" }}
+                    >
+                        {data && (
+                            <div className="card">
+                                <DataView
+                                    value={data}
+                                    itemTemplate={itemTemplate}
+                                />
+                            </div>
+                        )}
+                    </div>
+                    {/* <DataView
                             value={products}
                             paginator={true}
                             rows={rows[1]}
@@ -420,10 +424,16 @@ const UserPanel1 = () => {
                             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                             itemTemplate={listItemTemplate}
                         /> */}
-                {/* <DetailScreen /> */}
-                {showBooking && <BookFleet selectedTruck={selectedTruck} onCancel={()=>{
-                    setShowBooking(false)
-                }} />}
+                    {/* <DetailScreen /> */}
+                    {showBooking && (
+                        <BookFleet
+                            selectedTruck={selectedTruck}
+                            onCancel={() => {
+                                setShowBooking(false);
+                            }}
+                        />
+                    )}
+                </div>
             </div>
         </>
     );

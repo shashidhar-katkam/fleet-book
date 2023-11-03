@@ -103,15 +103,18 @@ export default class Bookings extends Component {
         const { bookings } = this.state;
         return (
             <NavFooter2>
-                <div style={{ width: "60%", marginLeft: "10%" }}>
-                    {bookings && (
-                        <div className="card">
-                            <DataView
-                                value={bookings}
-                                itemTemplate={this.itemTemplate}
-                            />
-                        </div>
-                    )}
+                <div className="p-card p-5">
+                    <h2>User Bookings</h2>
+                    <div>
+                        {bookings && (
+                            <div className="card p-5">
+                                <DataView
+                                    value={bookings}
+                                    itemTemplate={this.itemTemplate}
+                                />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </NavFooter2>
         );

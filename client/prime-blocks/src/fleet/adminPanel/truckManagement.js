@@ -8,6 +8,7 @@ import { InputSwitch } from "primereact/inputswitch";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import { Button } from "primereact/button";
 import BlockingTruckInternal from "./blockingTruckInternal";
+import NavFooter2 from "./navFooter2";
 
 export default class TruckManagement extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ export default class TruckManagement extends Component {
             if (response?.data) {
                 this.setState(
                     {
-                      //  iShowConfirmDialog: false,
+                        //  iShowConfirmDialog: false,
                     },
                     this.getTrucks
                 );
@@ -63,40 +64,41 @@ export default class TruckManagement extends Component {
         const { trucks, isShowTruckBooking } = this.state;
         console.log(this.state, "trucks");
         return (
-            <NavFooter>
-                <DataTable
-                    value={trucks}
-                    key="_id"
-                    stripedRows
-                    tableStyle={{ minWidth: "50rem" }}
-                    paginator
-                    rows={5}
-                    rowsPerPageOptions={[5, 10, 25, 50]}
-                >
-                    <Column field="name" header="Name"></Column>
-                    <Column
-                        field="enabledForBooking"
-                        header="Actions"
-                        body={(rowData) => {
-                            return (
-                                <>
-                                    <Button
-                                        icon="pi pi-book"
-                                        aria-label="Book"
-                                        onClick={() => {
-                                            this.setState({
-                                                isShowTruckBooking: true,
-                                                selectedTruck : rowData
-                                            });
-                                        }}
-                                    />
-                                </>
-                            );
-                        }}
-                    ></Column>
-                </DataTable>
-             
-
+            <NavFooter2>
+                <div className="p-card p-5">
+                    <h2>Truck Management</h2>
+                    <DataTable
+                        value={trucks}
+                        key="_id"
+                        stripedRows
+                        tableStyle={{ minWidth: "50rem" }}
+                        paginator
+                        rows={5}
+                        rowsPerPageOptions={[5, 10, 25, 50]}
+                    >
+                        <Column field="name" header="Name"></Column>
+                        <Column
+                            field="enabledForBooking"
+                            header="Actions"
+                            body={(rowData) => {
+                                return (
+                                    <>
+                                        <Button
+                                            icon="pi pi-book"
+                                            aria-label="Book"
+                                            onClick={() => {
+                                                this.setState({
+                                                    isShowTruckBooking: true,
+                                                    selectedTruck: rowData,
+                                                });
+                                            }}
+                                        />
+                                    </>
+                                );
+                            }}
+                        ></Column>
+                    </DataTable>
+                </div>
                 {isShowTruckBooking && (
                     <BlockingTruckInternal
                         selectedTruck={this.state.selectedTruck}
@@ -107,7 +109,7 @@ export default class TruckManagement extends Component {
                         }}
                     />
                 )}
-            </NavFooter>
+            </NavFooter2>
         );
     }
 }
