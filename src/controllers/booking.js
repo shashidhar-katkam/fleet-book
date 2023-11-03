@@ -1,3 +1,4 @@
+const Booking = require('../models/booking');
 const Truck = require('../models/truck');
 const catchAsync = require('../utils/catchAsync');
 const APIFeatures = require('../utils/apiFeature');
@@ -5,11 +6,11 @@ const APIFeatures = require('../utils/apiFeature');
 exports.bookTruck = catchAsync(async (req, res, next) => {
   try {
     let body = req.body;
-    const createdTruck = await Truck.create(body);
+    const createdBooking = await Booking.create(body);
     return res.status(200).json({
       status: true,
-      message: 'Truck booked successfully.',
-      data: createdTruck,
+      message: 'Booking booked successfully.',
+      data: createdBooking,
     });
   } catch (e) {
     console.log(e.message);
@@ -34,7 +35,7 @@ exports.getAllBookings = catchAsync(async (req, res, next) => {
       };
     }
 
-    const features = new APIFeatures(Truck.find(filter), queryParams)
+    const features = new APIFeatures(Booking.find(filter), queryParams)
       .filter()
       .sort()
       .limitFields()
@@ -43,11 +44,11 @@ exports.getAllBookings = catchAsync(async (req, res, next) => {
 
     let trucks = await features.query;
 
-    let totalTrucks = await Truck.countDocuments(filter);
+    let totalBookings = await Booking.countDocuments(filter);
     return res.status(200).json({
       status: true,
-      message: 'Trucks successfully fetched.',
-      totalRecords: totalTrucks,
+      message: 'Bookings successfully fetched.',
+      totalRecords: totalBookings,
       data: trucks,
     });
   } catch (e) {
@@ -59,17 +60,17 @@ exports.getAllBookings = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.updateTruck = catchAsync(async (req, res, next) => {
+exports.updateBooking = catchAsync(async (req, res, next) => {
   try {
     let { _id, ...rest } = req.body;
 
-    const updatedTruck = await Truck.findByIdAndUpdate(_id, rest, {
+    const updatedBooking = await Booking.findByIdAndUpdate(_id, rest, {
       new: true,
     });
     return res.status(200).json({
       status: true,
-      message: 'Truck updated successfully.',
-      data: updatedTruck,
+      message: 'Booking updated successfully.',
+      data: updatedBooking,
     });
   } catch (e) {
     console.log(e.message);
@@ -80,14 +81,14 @@ exports.updateTruck = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.deleteTruck = catchAsync(async (req, res, next) => {
+exports.deleteBooking = catchAsync(async (req, res, next) => {
   try {
     let body = req.body;
 
-    await Truck.deleteOne({ _id: body._id });
+    await Booking.deleteOne({ _id: body._id });
     return res.status(200).json({
       status: true,
-      message: 'Truck deleted successfully.',
+      message: 'Booking deleted successfully.',
     });
   } catch (e) {
     console.log(e.message);
@@ -112,7 +113,7 @@ exports.getLynxFleets = catchAsync(async (req, res, next) => {
       };
     }
 
-    const features = new APIFeatures(Truck.find(filter), queryParams)
+    const features = new APIFeatures(Booking.find(filter), queryParams)
       .filter()
       .sort()
       .limitFields()
@@ -122,11 +123,11 @@ exports.getLynxFleets = catchAsync(async (req, res, next) => {
 
     let trucks = await features.query;
 
-    let totalTrucks = await Truck.countDocuments(filter);
+    let totalBookings = await Booking.countDocuments(filter);
     return res.status(200).json({
       status: true,
-      message: 'Trucks successfully fetched.',
-      totalRecords: totalTrucks,
+      message: 'Bookings successfully fetched.',
+      totalRecords: totalBookings,
       data: trucks,
     });
   } catch (e) {
@@ -140,9 +141,27 @@ exports.getLynxFleets = catchAsync(async (req, res, next) => {
 
 exports.getFleetsForBooking = catchAsync(async (req, res, next) => {
   try {
+    const { body } = req;
+
+    const fromDate = new Date(body.fromDate);
+    const toDate = new Date(body.toDate);
+
     let filter = {
-      enabledForBooking: true,
+      allowExternalBooking: true,
+      $or: [
+        { fromLocation: [body.fromLocation, null] },
+        { toLocation: [body.toLocation, null] },
+      ],
+      // fromDate: {
+      //   $gte: fromDate,
+      //   $lte: toDate,
+      // },
+      // toDate: {
+      //   $gte: fromDate,
+      //   $lte: toDate,
+      // },
     };
+
     let queryParams = req.query;
     if (queryParams.search && queryParams.search != '') {
       filter = {
@@ -154,7 +173,9 @@ exports.getFleetsForBooking = catchAsync(async (req, res, next) => {
       };
     }
 
-    const features = new APIFeatures(Truck.find(filter), queryParams)
+    console.log(filter, 'filter');
+
+    const features = new APIFeatures(Booking.find(filter), queryParams)
       .filter()
       .sort()
       .limitFields()
@@ -164,12 +185,23 @@ exports.getFleetsForBooking = catchAsync(async (req, res, next) => {
 
     let trucks = await features.query;
 
-    let totalTrucks = await Truck.countDocuments(filter);
+    console.log(JSON.stringify(trucks));
+
+    let truckss = [];
+    trucks.map(async (truck) => {
+      let truckDetails = await Truck.findById(truck.truckId).lean();
+      truckss.push({
+        ...truck,
+        ...truckDetails,
+      });
+    });
+
+    let totalBookings = await Booking.countDocuments(filter);
     return res.status(200).json({
       status: true,
-      message: 'Trucks successfully fetched.',
-      totalRecords: totalTrucks,
-      data: trucks,
+      message: 'Bookings successfully fetched.',
+      totalRecords: totalBookings,
+      data: truckss,
     });
   } catch (e) {
     console.log(e.message);

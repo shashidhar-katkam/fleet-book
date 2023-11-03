@@ -15,6 +15,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Calendar } from "primereact/calendar";
 import { InputNumber } from "primereact/inputnumber";
 import { europeCities } from "../../constants";
+import { RadioButton } from "primereact/radiobutton";
 
 export default class BlockingTruckInternal extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ export default class BlockingTruckInternal extends Component {
             selectedTruck: this.props.selectedTruck,
 
             booking: {
+                truckModeForBooking: "full",
                 fromDate: null,
                 toDate: null,
                 capacity: null,
@@ -45,15 +47,16 @@ export default class BlockingTruckInternal extends Component {
 
         try {
             const url = `${END_POINT}/bookings/book`;
-            const dataToSend = {};
-            const response = await axios.post(url, dataToSend);
+
+            const response = await axios.post(url, payload);
             if (response?.data) {
-                 this.toast.current.show({
+                this.toast.current.show({
                     severity: "success",
                     ///summary: "Sticky",
                     detail: "Fleet booked successfully",
                     //sticky: true,
                 });
+                this.props.onCancel();
             }
         } catch (error) {
             console.error("An error occurred:", error);
@@ -229,6 +232,55 @@ export default class BlockingTruckInternal extends Component {
                         <div className="font-medium text-3xl text-900 mb-3">
                             Update Fleet
                         </div>
+                        <div className="config-title">Truck For Booking</div>
+                        <div className="formgroup-inline">
+                            <div className="field-radiobutton">
+                                <RadioButton
+                                    name="inputstyle"
+                                    value="full"
+                                    checked={
+                                        booking.truckModeForBooking === "full"
+                                    }
+                                    onChange={(e) => {
+                                        this.setState((prevState) => {
+                                            return {
+                                                booking: {
+                                                    ...prevState.booking,
+                                                    truckModeForBooking:
+                                                        e.value,
+                                                },
+                                            };
+                                        });
+                                    }}
+                                    inputId="input_outlined"
+                                ></RadioButton>
+                                <label htmlFor="input_outlined">Full</label>
+                            </div>
+                            <div className="field-radiobutton">
+                                <RadioButton
+                                    name="inputstyle"
+                                    value="partially"
+                                    checked={
+                                        booking.truckModeForBooking ===
+                                        "partially"
+                                    }
+                                    onChange={(e) => {
+                                        this.setState((prevState) => {
+                                            return {
+                                                booking: {
+                                                    ...prevState.booking,
+                                                    truckModeForBooking:
+                                                        e.value,
+                                                },
+                                            };
+                                        });
+                                    }}
+                                    inputId="input_outlined"
+                                ></RadioButton>
+                                <label htmlFor="input_filled">Partially</label>
+                            </div>
+                        </div>
+
                         <div className="grid formgrid p-fluid">
                             <div className="field mb-4 col-12 md:col-6">
                                 <label
@@ -343,33 +395,36 @@ export default class BlockingTruckInternal extends Component {
                                     placeholder="Select from location"
                                 />
                             </div>
-                            <div className="field mb-4 col-12 md:col-6">
-                                <label
-                                    htmlFor="customer_name"
-                                    className="font-medium text-900"
-                                >
-                                    Capacity
-                                </label>
-                                <InputNumber
-                                    onChange={(e) => {
-                                        this.setState((prevState) => {
-                                            return {
-                                                booking: {
-                                                    ...prevState.booking,
-                                                    capacity: e.value,
-                                                },
-                                            };
-                                        });
-                                    }}
-                                    type="text"
-                                    value={booking.capacity}
-                                    className="flex-1"
-                                    min={0}
-                                    max={selectedTruck.capacity || 100}
-                                />
+                            {booking.truckModeForBooking == "full" && (
+                                <>
+                                    <div className="field mb-4 col-12 md:col-6">
+                                        <label
+                                            htmlFor="customer_name"
+                                            className="font-medium text-900"
+                                        >
+                                            Capacity
+                                        </label>
+                                        <InputNumber
+                                            onChange={(e) => {
+                                                this.setState((prevState) => {
+                                                    return {
+                                                        booking: {
+                                                            ...prevState.booking,
+                                                            capacity: e.value,
+                                                        },
+                                                    };
+                                                });
+                                            }}
+                                            type="text"
+                                            value={booking.capacity}
+                                            className="flex-1"
+                                            min={0}
+                                            max={selectedTruck.capacity || 100}
+                                        />
+                                    </div>
+                                </>
+                            )}
 
-                                {/* <InputText id="customer_name" type="text" /> */}
-                            </div>
                             <div className="field mb-4 col-12 md:col-6">
                                 <label
                                     htmlFor="customer_name"
@@ -419,7 +474,11 @@ export default class BlockingTruckInternal extends Component {
                             <div className="surface-border border-top-1 opacity-50 mb-4 col-12"></div>
                         </div>
                         <Button
-                            label="Block Fleet"
+                            label={
+                                booking.truckModeForBooking == "full"
+                                    ? "Update"
+                                    : "Update"
+                            }
                             icon="pi pi-file"
                             className="w-auto"
                             onClick={this.blockTruck}
